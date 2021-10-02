@@ -1,0 +1,3 @@
+C:/Users/amerc/CLionProjects/MultipathAdventure/cmake-build-debug/CMakeFiles/MultipathAdventure.dir
+C:/Users/amerc/CLionProjects/MultipathAdventure/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/amerc/CLionProjects/MultipathAdventure/cmake-build-debug/CMakeFiles/rebuild_cache.dir
