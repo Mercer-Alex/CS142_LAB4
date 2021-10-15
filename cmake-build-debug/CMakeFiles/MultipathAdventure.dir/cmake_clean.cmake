@@ -2,8 +2,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/MultipathAdventure.dir/main.cpp.obj"
   "MultipathAdventure.exe"
   "MultipathAdventure.exe.manifest"
-  "MultipathAdventure.lib"
   "MultipathAdventure.pdb"
+  "libMultipathAdventure.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -1,12 +1,15 @@
 #include <iostream>
 #include <string>
+#include <unistd.h>
 using namespace std;
 
 bool InputMatchString(string userInput, string correctOption);
 
-int DinnerOption();
+string DinnerOption();
 
-int RelaxOption();
+string RelaxOption();
+
+//string validInput(string pathPrompt, string)
 
 
 int main() {
@@ -15,10 +18,6 @@ int main() {
 
     cout << "Hello, would you like to play this game I made? (yes/no)" << endl;
     getline(cin, playAgain);
-
-    if (playAgain.find("no") != string::npos) {
-        cout << "Bummer, have a nice day!";
-    }
 
     while (playAgain.find("yes") != string::npos) {
 
@@ -35,13 +34,14 @@ int main() {
         }
 
         if (InputMatchString(relaxDinner, "dinner")) {
-            return DinnerOption();
-        } else if (InputMatchString(relaxDinner, "relax")) {
-            return RelaxOption();
+            playAgain = DinnerOption();
         }
-        cout << "Would you like to play again?" << endl;
-        getline(cin, playAgain);
+        else if (InputMatchString(relaxDinner, "relax")) {
+            playAgain = RelaxOption();
+        }
     }
+    cout << "Bummer, have a nice day!";
+
     return 0;
 }
 
@@ -50,7 +50,7 @@ bool InputMatchString(string userInput, string correctOption) {
     return userInput.find(correctOption) != string::npos;
 }
 
-int DinnerOption() {
+string DinnerOption() {
     string pancakeWaffle;
     string unclePolice;
     string playAgain;
@@ -68,10 +68,7 @@ int DinnerOption() {
         cout << "Would you like to play again?" << endl;
         getline(cin, playAgain);
 
-        if (playAgain.find("no") != string::npos) {
-            cout << "Bummer, bye!";
-            return 0;
-        }
+        return playAgain;
     }
     else if (InputMatchString(pancakeWaffle, "pancakes")) {
         cout << "Huh, all the pancake mix is gone, better head to the store then. You walk out to the parking lot - \n"
@@ -84,31 +81,43 @@ int DinnerOption() {
                     "They have to rush off in a hurry. There's a fire somewhere else in town caused by some fireworks."
                     "\nThe end" << endl;
 
-            return 0;
+            cout << "Would you like to play again?" << endl;
+            getline(cin, playAgain);
+
+            return playAgain;
         }
         else if (InputMatchString(unclePolice, "uncle")) {
             cout << "Your uncle, who specializes in cars, says that one of his buddies traded some illegal fireworks "
                     "to a kid for a car that was the same make, model, and year as yours. He says that's all the info"
                     " he has, and his buddy isn't willing to give the car back. Sorry kid.\nThe end" << endl;
 
-            return 0;
+            cout << "Would you like to play again?" << endl;
+            getline(cin, playAgain);
+
+            return playAgain;
         }
         else {
             cout << "Cool, I take it you don't want to call the 'police' or your 'uncle', so I wrote the end of those "
                     "storylines for nothing. Thanks." << endl;
 
-            return 0;
+            cout << "Would you like to play again?" << endl;
+            getline(cin, playAgain);
+
+            return playAgain;
         }
     }
     else {
         cout << "Listen you really want 'pancakes' or 'waffles'. There is literally nothing else you want to eat."
                 " Take it from the top now." << endl;
 
-        return 0;
+        cout << "Would you like to play again?" << endl;
+        getline(cin, playAgain);
+
+        return playAgain;
     }
 }
 
-int RelaxOption(){
+string RelaxOption(){
 
     string helpTv;
     string bigText;
@@ -116,6 +125,8 @@ int RelaxOption(){
     string aptWork;
     string yesNo;
     string pointTake;
+
+    string playAgain;
 
     cout << "You turn on the TV to watch your favorite show, but your roommate BURSTS into the room! They need help."
             "\nDo you 'help' them, or keep watching 'TV'?" << endl;
@@ -140,7 +151,14 @@ int RelaxOption(){
                         "\nReady to set them off (yes/no)?" << endl;
                 getline(cin, yesNo);
 
-                cout << "It doesn't matter if you're ready, your roommate lights the fireworks!\nYou watch in horror as"
+                cout << "It doesn't matter if you're ready, your roommate lights the fireworks!" << endl;
+
+                for (int i = 3; i > 0; --i) {
+                    cout << i << endl;
+                    sleep(1);
+                }
+
+                cout << "You watch in horror as"
                         " the grass quickly catches fire! The flames spread to the apartment building. Your roommate "
                         "rushes in to pull their crush out. You call the fire department who come and douse the flames. "
                         "The cops also show up. They ask who set off the illegal fireworks. You look at your roommate "
@@ -154,7 +172,10 @@ int RelaxOption(){
                             "miss your roommate while they're in prison.\n"
                             "The end." << endl;
 
-                    return 0;
+                    cout << "Would you like to play again?" << endl;
+                    getline(cin, playAgain);
+
+                    return playAgain;
                 }
                 if (InputMatchString(pointTake, "take")) {
                     cout << "The cops arrest you. Your roommate comforts their crush while you're escorted away. "
@@ -163,7 +184,10 @@ int RelaxOption(){
                             "were saved from the fire.\nOh, there's more at the bottom, P.S: your car was stolen.\n"
                             "The end." << endl;
 
-                    return 0;
+                    cout << "Would you like to play again?" << endl;
+                    getline(cin, playAgain);
+
+                    return playAgain;
                 }
             }
             else if (InputMatchString(aptWork, "work")) {
@@ -173,14 +197,20 @@ int RelaxOption(){
                         " furious.\n"
                         "The end" << endl;
 
-                return 0;
+                cout << "Would you like to play again?" << endl;
+                getline(cin, playAgain);
+
+                return playAgain;
             }
             else {
                 cout << "Where else could you think to set them off that the crush would see them? Are you stalking the "
                         "crush, do you know all the places they go? No? Good. Well you put in an incorrect input, so "
                         "start over." << endl;
 
-                return 0;
+                cout << "Would you like to play again?" << endl;
+                getline(cin, playAgain);
+
+                return playAgain;
             }
         }
         else if (InputMatchString(bigText, "text")) {
@@ -190,13 +220,19 @@ int RelaxOption(){
                     "fireworks. You're furious.\n"
                     "The end." << endl;
 
-            return 0;
+            cout << "Would you like to play again?" << endl;
+            getline(cin, playAgain);
+
+            return playAgain;
         }
         else {
             cout << "Honestly, you should try the 'big' path, it's pretty cool. But instead you chose no path, so you'll"
                     "have to start over or something." << endl;
 
-            return 0;
+            cout << "Would you like to play again?" << endl;
+            getline(cin, playAgain);
+
+            return playAgain;
         }
     }
     else if (InputMatchString(helpTv, "TV")) {
@@ -204,14 +240,23 @@ int RelaxOption(){
                 "leaves, visibly upset, but you're finally free to watch your show. You drift off to sleep, never "
                 "knowing what your roommate needed.\n"
                 "The end." << endl;
-        return 0;
+        cout << "Would you like to play again?" << endl;
+        getline(cin, playAgain);
+
+        return playAgain;
     }
     else {
         cout << "Your roommate needs a definitive word, like 'help' if you wanna help them, or 'TV' if you wanna watch"
                 "TV instead. Seriously, it should be pretty easy to type one of those words. Feel free to start over."
              << endl;
 
-        return 0;
+        cout << "Would you like to play again?" << endl;
+        getline(cin, playAgain);
+
+        return playAgain;
     }
-    return 0;
+    cout << "Would you like to play again?" << endl;
+    getline(cin, playAgain);
+
+    return playAgain;
 }
