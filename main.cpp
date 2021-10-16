@@ -14,13 +14,15 @@ string RelaxOption();
 
 int RoommateRand (int countDown);
 
-const int HIGHEST_ROOMMATE_CAN_COUNT = 10;
+const int HIGHEST_ROOMMATE_CAN_COUNT = 7;
 
 int main() {
     string relaxDinner;
     string playAgain;
 
-    cout << "Hi there, do you want to play this game? (yes/no)" << endl;
+    srand(time(0));
+
+    cout << "Hi there, do you want to play this game? ('yes'/'no')" << endl;
     getline(cin, playAgain);
 
     while (playAgain.find("yes") != string::npos) {
@@ -31,7 +33,7 @@ int main() {
 
         while ((relaxDinner.find("relax") == string::npos) && (relaxDinner.find("dinner") == string::npos)) {
             cout << "Hmm, that doesn't match the option to 'relax' or the option to make 'dinner'. You'll have to "
-                       "say which you want do again" << endl;
+                       "say which you want do again." << endl;
             getline(cin, relaxDinner);
         }
 
@@ -42,6 +44,7 @@ int main() {
             playAgain = RelaxOption();
         }
     }
+
     cout << "Bummer, have a nice day!";
 
     return 0;
@@ -64,7 +67,7 @@ string DinnerOption() {
     if (InputMatchString(pancakeWaffle, "waffles")) {
         cout << "You put frozen waffles in the toaster, it isn't the dinner of champions, but it's one of the easiest. "
                 "You enjoy your evening. Until you get a call saying your roommate was arrested...\n"
-                "The end" << endl;
+                "The end" << endl << endl;
 
         cout << "Do you want to find out why the roommate was arrested? If so, write 'yes'. If not, write 'no'." << endl;
         getline(cin, playAgain);
@@ -73,21 +76,14 @@ string DinnerOption() {
     }
     else if (InputMatchString(pancakeWaffle, "pancakes")) {
         cout << "Huh, all the pancake mix is gone, better head to the store then. You walk out to the parking lot to "
-                "your car\n";
-        this_thread::sleep_for(2500ms);
-
-        for (int i = 3; i > 0; --i) {
-            cout << ".";
-            this_thread::sleep_for(900ms);
-        }
-        cout << "YOUR CAR IS GONE!\nQuick, do you call your 'uncle', who specializes in car-related things, or do you "
-                "call the 'police'?" << endl;
+                "your car...\nYOUR CAR IS GONE!\nQuick, do you call your 'uncle', who specializes in car-related things, or"
+                " do you call the 'police'?" << endl;
         getline(cin, unclePolice);
 
         if (InputMatchString(unclePolice, "police")) {
             cout << "The police officer takes your statement, and says they'll let you know what they find out. They "
                     "have to rush off in a hurry. There's a fire somewhere else in town caused by some fireworks."
-                    "\nThe end." << endl;
+                    "\nThe end." << endl << endl;
 
             cout << "Would you like to play again? ('yes'/'no')" << endl;
             getline(cin, playAgain);
@@ -97,7 +93,7 @@ string DinnerOption() {
         else if (InputMatchString(unclePolice, "uncle")) {
             cout << "Your uncle, who specializes in cars, says that one of his buddies traded some illegal fireworks "
                     "to a kid for a car that was the same make, model, and year as yours. He says that that's all the "
-                    "info he has, and his buddy isn't willing to give the car back. Sorry kid.\nThe end." << endl;
+                    "info he has, and his buddy isn't willing to give the car back. Sorry kid.\nThe end." << endl << endl;
 
             cout << "Would you like to play again? ('yes'/'no')" << endl;
             getline(cin, playAgain);
@@ -106,7 +102,7 @@ string DinnerOption() {
         }
         else {
             cout << "Cool, I take it you don't want to call the 'police' or your 'uncle', so I wrote the end of those "
-                    "storylines for nothing. Thanks." << endl;
+                    "storylines for nothing. Thanks." << endl << endl;
 
             cout << "Do you want to start over? ('yes'/'no')" << endl;
             getline(cin, playAgain);
@@ -116,7 +112,7 @@ string DinnerOption() {
     }
     else {
         cout << "Listen you really wanted 'pancakes' or 'waffles'. There is literally nothing else you wanted to eat."
-            << endl;
+            << endl << endl;
 
         cout << "Would you like to start over? ('yes'/'no')" << endl;
         getline(cin, playAgain);
@@ -160,13 +156,10 @@ string RelaxOption(){
 
                 cout << "It doesn't matter if you're ready, your roommate starts the countdown!" << endl;
 
-                srand(time(0));
-
-                for (int i = RoommateRand(HIGHEST_ROOMMATE_CAN_COUNT); i > 0; --i) {
+                for (int i = RoommateRand(HIGHEST_ROOMMATE_CAN_COUNT); i >= 0; --i) {
                     cout << i << endl;
-                   this_thread::sleep_for(800ms);
+                    this_thread::sleep_for(500ms);
                 }
-                cout << "0" << endl;
 
                 cout << "You watch in horror as the grass quickly catches fire! The flames spread to the apartment "
                         "building. Your roommate rushes in to pull their crush out. You call the fire department, they "
@@ -179,7 +172,7 @@ string RelaxOption(){
                     cout << "The police arrest your roommate, who admitted to trading your car for the illegal "
                             "fireworks, and to setting them off in dry grass. You're upset about your car, and will "
                             "miss your roommate while they're in prison.\n"
-                            "The end." << endl;
+                            "The end." << endl << endl;
 
                     cout << "Would you like to play again? ('yes'/'no')" << endl;
                     getline(cin, playAgain);
@@ -191,7 +184,7 @@ string RelaxOption(){
                             "prison you receive a wedding announcement from you roommate. There's a note that says their"
                             " crush fell madly in love with them after they were saved from the fire.\nOh, there's more "
                             "at the bottom, P.S: your car was stolen.\n"
-                            "The end." << endl;
+                            "The end." << endl << endl;
 
                     cout << "Would you like to play again? ('yes'/'no')" << endl;
                     getline(cin, playAgain);
@@ -206,18 +199,15 @@ string RelaxOption(){
 
                 cout << "It doesn't matter if you're ready, your roommate starts the countdown!" << endl;
 
-                srand(time(0));
-
                 for (int i = RoommateRand(HIGHEST_ROOMMATE_CAN_COUNT); i >= 0; --i) {
                     cout << i << endl;
-                    this_thread::sleep_for(800ms);
+                    this_thread::sleep_for(500ms);
                 }
-                cout << "0" << endl;
 
                 cout << "It was beautiful. One of their coworkers comes out after the show, they tell you the crush "
                         "isn't interested in your roommate. Your roommate cries and tells you they're sorry for trading "
                         "your car just for this to fail. You're furious.\n"
-                        "The end." << endl;
+                        "The end." << endl << endl;
 
                 cout << "Would you like to play again? ('yes'/'no')" << endl;
                 getline(cin, playAgain);
@@ -227,7 +217,7 @@ string RelaxOption(){
             else {
                 cout << "Where else could you think to set them off that the crush would see them? Are you stalking the "
                         "crush, do you know all the places they go? No? Good. Well you put in an incorrect input, so "
-                        "start over if you want." << endl;
+                        "start over if you want." << endl << endl;
 
                 cout << "Start over? ('yes'/'no)" << endl;
                 getline(cin, playAgain);
@@ -242,16 +232,15 @@ string RelaxOption(){
             getline(cin, yesNo);
 
             cout << "Your roommate doesn't wait for your answer. They start counting down:" << endl;
-            srand(time(0));
 
             for (int i = RoommateRand(HIGHEST_ROOMMATE_CAN_COUNT); i >= 0; --i) {
                 cout << i << endl;
-                this_thread::sleep_for(800ms);
+                this_thread::sleep_for(500ms);
             }
 
             cout << "While the fireworks explode your roommate admits that they traded your car for the fireworks. "
                     "You're furious.\n"
-                    "The end." << endl;
+                    "The end." << endl << endl;
 
             cout << "Would you like to play again? ('yes'/'no')" << endl;
             getline(cin, playAgain);
@@ -260,7 +249,7 @@ string RelaxOption(){
         }
         else {
             cout << "Honestly, you should try the 'big' path, it's pretty cool. But instead you chose no path, so you'll"
-                    " have to start over or something." << endl;
+                    " have to start over or something." << endl << endl;
 
             cout << "Would you like to start over? ('yes'/'no')" << endl;
             getline(cin, playAgain);
@@ -272,7 +261,7 @@ string RelaxOption(){
         cout << "You look at your roommate while in your blanket burrito, and tell them you're busy. Your roommate "
                 "leaves, visibly upset, but you're finally free to watch your show. You drift off to sleep, never "
                 "knowing what your roommate needed.\n"
-                "The end." << endl;
+                "The end." << endl << endl;
 
         cout << "Would you like to play again? ('yes'/'no')" << endl;
         getline(cin, playAgain);
@@ -283,7 +272,7 @@ string RelaxOption(){
         cout << "Your roommate needs a definitive word, like 'help' if you wanna help them, or 'TV' if you wanna watch"
                 " TV instead. Honestly, it should be pretty easy to type either one of those words. Feel free to start "
                 "over."
-             << endl;
+             << endl << endl;
 
         cout << "Would you like to start over? ('yes'/'no')" << endl;
         getline(cin, playAgain);
@@ -297,5 +286,5 @@ string RelaxOption(){
 }
 
 int RoommateRand (int countDown) {
-    return (rand() % countDown) + 1;
+    return (rand() % countDown) + 3;
 }
